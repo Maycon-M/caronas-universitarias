@@ -4,40 +4,49 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import br.edu.iff.ccc.caronas.entities.UserSystem;
+import br.edu.iff.ccc.caronas.services.UserSystemService;
+
 @Controller
 public class AuthViewController {
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
+    private final UserSystemService users;
+
+    public AuthViewController(UserSystemService users) {
+        this.users = users;
     }
 
-    @GetMapping("/register")
-    public String registerPage() {
-        return "register";
-    }
+    @GetMapping("/login")    public String loginPage()    { return "login"; }
+    @GetMapping("/register") public String registerPage() { return "register"; }
 
-    @PostMapping("/login")
-    public String doLoginStub(@RequestParam String email,
-                              @RequestParam String password,
-                              HttpSession session) {
-        // TODO: validar usuário no banco (depois)
-        session.setAttribute("authUserEmail", email);
-        session.setAttribute("authUserName", email.split("@")[0]); // só pra exibir algo
+    @PostMapping("/register")
+    public String doRegister(@RequestParam String name,
+                             @RequestParam String email,
+                             @RequestParam String password,
+                             @RequestParam String confirmPassword,
+                             @RequestParam String role,
+                             HttpSession session) {
+        if (!password.equals(confirmPassword)) {
+            // ideal: redirecionar com erro (querystring/flash). Por agora:
+            throw new IllegalArgumentException("Senha e confirmação não conferem");
+        }
+        UserSystem u = users.register(name, email, password, role);
+
+        // auto-login
+        session.setAttribute("authUserEmail", u.getEmail());
+        session.setAttribute("authUserName",  u.getName());
+        session.setAttribute("authUserRole",  u.getRole());
         return "redirect:/home";
     }
 
-    @PostMapping("/register")
-    public String doRegisterStub(@RequestParam String name,
-                                 @RequestParam String email,
-                                 @RequestParam String password,
-                                 @RequestParam String confirmPassword,
-                                 @RequestParam String role,
-                                 HttpSession session) {
-        // TODO: persistir User no banco e hashear senha
-        session.setAttribute("authUserEmail", email);
-        session.setAttribute("authUserName", name);
-        session.setAttribute("authUserRole", role);
+    @PostMapping("/login")
+    public String doLogin(@RequestParam String email,
+                          @RequestParam String password,
+                          HttpSession session) {
+        UserSystem u = users.authenticate(email, password);
+        session.setAttribute("authUserEmail", u.getEmail());
+        session.setAttribute("authUserName",  u.getName());
+        session.setAttribute("authUserRole",  u.getRole());
         return "redirect:/home";
     }
 
@@ -48,7 +57,6 @@ public class AuthViewController {
     }
 
     @GetMapping("/perfil")
-    public String perfil() {
-        return "perfil"; 
-    }
+    public String perfil() { return "perfil"; }
 }
+
