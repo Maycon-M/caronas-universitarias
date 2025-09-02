@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuários</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    h1, h2 { margin: .2rem 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ddd; padding: .6rem; }
+    th { background: #f6f6f6; text-align: left; }
+    form { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; margin-top: 1.2rem; }
+    input, select, button { padding: .55rem; }
+    .colspan { grid-column: 1 / -1; }
+    .error { color: #b00020; font-size: .9rem; }
+    .muted { color: #666; }
+    nav a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a th:href="@{/home}">Home</a>
+    <strong class="muted">/ Usuários</strong>
+  </nav>
+
+  <h1>Usuários</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Nome</th><th>Email</th><th>Status</th><th>Perfil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="u : ${usuarios}">
+        <td th:text="${u.id}">1</td>
+        <td th:text="${u.name}">Fulano</td>
+        <td th:text="${u.email}">fulano@if.com</td>
+        <td th:text="${u.status}">ATIVO</td>
+        <td th:text="${u.role}">USER</td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(usuarios)}">
+        <td colspan="5">Nenhum usuário cadastrado.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Novo usuário</h2>
+  <form th:action="@{/usuarios}" th:object="${form}" method="post">
+    <div>
+      <label>Nome</label>
+      <input th:field="*{name}" placeholder="Nome completo" required />
+      <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Erro</div>
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input th:field="*{email}" placeholder="email@exemplo.com" required />
+      <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Erro</div>
+    </div>
+
+    <div>
+      <label>Status</label>
+      <select th:field="*{status}">
+        <option value="ATIVO" selected>ATIVO</option>
+        <option value="INATIVO">INATIVO</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Perfil</label>
+      <select th:field="*{role}">
+        <option value="USER" selected>USER</option>
+        <option value="DRIVER">DRIVER</option>
+        <option value="ADMIN">ADMIN</option>
+      </select>
+    </div>
+
+    <div class="colspan">
+      <button type="submit">Salvar</button>
+    </div>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+:root{
+  --bg:#0b1220;          /* fundo */
+  --surface:#11192b;     /* cards/nav */
+  --muted:#1a2340;       /* elementos “elevados” */
+  --border:#25304d;      /* contornos sutis */
+  --text:#e6e8ef;        /* texto principal */
+  --text-dim:#a8b0c7;    /* texto secundário */
+  --primary:#1e40ff;     /* azul principal (botão) */
+  --primary-2:#3b82f6;   /* hover/gradiente */
+  --accent:#22d3ee;      /* detalhes, focos */
+  --radius:16px;
+  --radius-sm:12px;
+  --shadow:0 8px 24px rgba(0,0,0,.35);
+  --danger: #ef4444;   /* vermelho */
+  --danger-2: #dc2626;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: radial-gradient(1200px 600px at 80% -10%, #122042 0%, transparent 60%) no-repeat,
+              radial-gradient(900px 400px at -10% 10%, #0f1a33 0%, transparent 50%) no-repeat,
+              var(--bg);
+  color:var(--text);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+}
+
+/* Container */
+.container{max-width:1100px;margin:0 auto;padding:24px}
+
+/* Navbar */
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(17,25,43,.7); backdrop-filter: blur(8px);
+  border:1px solid var(--border); border-radius: var(--radius);
+  padding:12px 16px; box-shadow: var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+.brand-badge{
+  width:36px;height:36px;border-radius:50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 6px 18px rgba(30,64,255,.35);
+}
+.nav a{color:var(--text-dim);text-decoration:none;padding:8px 12px;border-radius:10px}
+.nav a:hover{background:var(--muted);color:var(--text)}
+
+/* Hero */
+.hero{display:grid;gap:18px;padding:32px;margin-top:20px}
+.hero h1{font-size:28px;margin:0}
+.hero p{color:var(--text-dim);margin:0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 18px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface); color:var(--text); text-decoration:none; cursor:pointer;
+}
+.btn:hover{background:var(--muted)}
+.btn-primary{
+  background: linear-gradient(180deg, var(--primary-2), var(--primary));
+  border-color: transparent; color:white; font-weight:600;
+  box-shadow: 0 10px 24px rgba(59,130,246,.35);
+}
+.btn-primary:hover{filter:brightness(1.05)}
+
+/* Card */
+.card{
+  background:rgba(17,25,43,.85); border:1px solid var(--border);
+  border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);
+}
+
+/* Search bar (origem/destino/data/hora) */
+.search{
+  display:grid; gap:12px; grid-template-columns: 1fr 1fr auto auto auto;
+  align-items:center; padding:16px; border-radius:var(--radius);
+  background:rgba(26,35,64,.6); border:1px solid var(--border);
+}
+.input, .select{
+  width:100%; padding:12px 14px; border-radius:12px;
+  border:1px solid var(--border); background:var(--surface); color:var(--text);
+  outline: none;
+}
+.input::placeholder{color:var(--text-dim)}
+.chip{
+  padding:10px 14px; border:1px solid var(--border); border-radius:999px;
+  background:var(--surface); color:var(--text-dim); cursor:pointer; text-align:center;
+}
+.chip:hover{background:var(--muted); color:var(--text)}
+
+/* Grid de atalhos */
+.grid{display:grid; gap:16px; grid-template-columns: repeat(3, 1fr); margin-top:18px}
+.tile{
+  padding:18px; border-radius:var(--radius-sm); border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(26,35,64,.7), rgba(17,25,43,.8));
+}
+.tile h3{margin:0 0 6px 0;font-size:16px}
+.tile p{margin:0;color:var(--text-dim);font-size:14px}
+
+/* Lista */
+.list{display:grid; gap:10px}
+.list-item{
+  display:flex;justify-content:space-between;align-items:center;
+  border:1px solid var(--border); border-radius:12px; padding:12px 14px;
+  background:rgba(17,25,43,.8)
+}
+.badge{font-size:12px;color:#cbd5e1;border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+
+/* Responsivo */
+@media (max-width: 900px){
+  .search{grid-template-columns: 1fr 1fr 1fr}
+  .grid{grid-template-columns: 1fr}
+}
+
+/* === Navbar CTAs (override forte) === */
+.nav-cta { display:inline-flex; gap:10px; margin-left:10px }
+
+/* Entrar (ghost) */
+.nav > div a.cta{
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:600;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+}
+.nav > div a.cta:hover{
+  background:rgba(255,255,255,.10);
+  color:var(--text);
+}
+
+/* Cadastrar (destaque) */
+.nav > div a.cta-primary{
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:700;
+  color:#fff;
+  border-color:transparent;
+  background:linear-gradient(180deg, var(--primary-2), var(--primary));
+  box-shadow:0 10px 24px rgba(59,130,246,.35);
+}
+.nav > div a.cta-primary:hover{ filter:brightness(1.06) }
+
+/* Sair (vermelho) */
+.nav > div a.link-danger{
+  color:var(--danger);
+  border-radius:999px;
+}
+.nav > div a.link-danger:hover{
+  color:#fff;
+  background:rgba(239,68,68,.14);
+  border:1px solid rgba(239,68,68,.45);
+}
