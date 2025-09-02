@@ -1,13 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusCruze • Home</title>
+  <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Welcome</h1>
-    <p>Seja bem vindo!</p>
+  <div class="container">
+
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-badge"></div>
+        <span>CampusCruze</span>
+      </div>
+
+      <div>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/caronas}">Caronas</a>
+
+        <!-- Quando NÃO logado -->
+        <span th:if="${session.authUserEmail == null}">
+          <a th:href="@{/login}">Entrar</a>
+          <a th:href="@{/register}">Cadastrar</a>
+        </span>
+
+        <!-- Quando logado -->
+        <span th:if="${session.authUserEmail != null}">
+          <a th:href="@{/perfil}">Perfil</a>
+          <a th:href="@{/logout}">Sair</a>
+        </span>
+      </div>
+    </div>
+
+
+    <!-- HERO -->
+    <section class="hero card">
+      <h1>Encontre ou ofereça caronas para o IFF</h1>
+      <p>Busque por origem, destino, data e horário. Interface escura, simples e responsiva.</p>
+
+      <!-- Barra de busca (GET para /caronas; filtros podem ser lidos depois no controller) -->
+      <form class="search" th:action="@{/caronas}" method="get">
+        <input class="input" type="text" name="origem" placeholder="Origem" />
+        <input class="input" type="text" name="destino" placeholder="Destino" />
+        <input class="input" type="date"  name="data" />
+        <input class="input" type="time"  name="hora" />
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </form>
+
+      <div class="hero-actions">
+        <a th:href="@{/caronas}" class="btn">Ver caronas</a>
+        <a th:href="@{/caronas}" class="btn btn-primary">Ofertar carona</a>
+      </div>
+    </section>
+
+    <!-- ATALHOS -->
+    <section class="grid">
+      <div class="tile">
+        <h3>Buscar Carona</h3>
+        <p>Filtre por rota e horário para encontrar a melhor opção.</p>
+      </div>
+      <div class="tile">
+        <h3>Confirmar Reserva</h3>
+        <p>Solicite vaga e acompanhe a confirmação do motorista.</p>
+      </div>
+      <div class="tile">
+        <h3>Avaliações</h3>
+        <p>Construa reputação com feedbacks ao fim das viagens.</p>
+      </div>
+    </section>
+
+    <!-- LISTA DEMO (placeholder visual) -->
+    <section class="card" style="margin-top:18px">
+      <h2 style="margin:0 0 8px 0;">Próximas caronas (exemplo)</h2>
+      <div class="list">
+        <div class="list-item">
+          <div>
+            <strong>IFF Centro &rarr; Pelinca</strong>
+            <div class="badge">Hoje • 10:00</div>
+          </div>
+          <a th:href="@{/caronas}" class="btn btn-primary">Reservar</a>
+        </div>
+        <div class="list-item">
+          <div>
+            <strong>Goytacazes &rarr; IFF Centro</strong>
+            <div class="badge">Hoje • 12:00</div>
+          </div>
+          <a th:href="@{/caronas}" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </body>
 </html>
