@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusCruze • Cadastrar</title>
+  <link th:href="@{/css/main.css}" rel="stylesheet" />
+  <link th:href="@{/css/auth.css}" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="brand"><div class="brand-badge"></div><span>CampusCruze</span></div>
+      <div>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/caronas}">Caronas</a>
+        <a th:href="@{/login}">Entrar</a>
+      </div>
+    </div>
+
+    <div class="auth-frame">
+      <div class="auth-card">
+        <!-- Esquerda -->
+        <aside class="auth-left">
+          <h1>Junte-se a nós!</h1>
+          <p>Crie sua conta para oferecer e reservar caronas com praticidade.</p>
+        </aside>
+
+        <!-- Direita -->
+        <div class="auth-right">
+          <div class="auth-panel">
+            <h2 class="auth-title">Create Account</h2>
+            <p class="auth-subtitle">Leva menos de um minuto.</p>
+
+            <form class="form" th:action="@{/register}" method="post">
+              <div class="field">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+                <input class="input-pill" type="text" name="name" placeholder="Seu nome" required />
+              </div>
+
+              <div class="field">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5S14.7 2 12 2 7 4.3 7 7s2.3 5 5 5zm0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6z"/></svg>
+                <input class="input-pill" type="email" name="email" placeholder="email@exemplo.com" required />
+              </div>
+
+              <div class="form" style="gap:12px">
+                <div class="field">
+                  <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 8V6a3 3 0 016 0v3H9z"/></svg>
+                  <input class="input-pill" type="password" name="password" placeholder="Senha" required />
+                </div>
+
+                <div class="field">
+                  <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V6a5 5 0 00-5-5z"/></svg>
+                  <input class="input-pill" type="password" name="confirmPassword" placeholder="Confirmar senha" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <select class="select-pill" name="role" required>
+                  <option value="USER" selected>Passageiro</option>
+                  <option value="DRIVER">Motorista</option>
+                </select>
+                <small class="small" style="color:var(--text-dim); display:block; margin-top:6px">
+                  A aprovação de motorista pode exigir verificação posterior.
+                </small>
+              </div>
+
+              <button class="btn-pill" type="submit">Cadastrar</button>
+
+              <p class="small" style="margin-top:10px;color:var(--text-dim)">
+                Já tem conta? <a class="link" th:href="@{/login}">Entre</a>
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

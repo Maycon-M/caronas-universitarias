@@ -1,0 +1,117 @@
+/* ===== Auth split card (segue paleta do main.css) ===== */
+:root{
+  --auth-grad-start:#7c3aed;   /* roxo */
+  --auth-grad-end:#4c1d95;     /* roxo escuro */
+  --auth-dot:#ffffff;
+}
+
+.auth-frame{
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+.auth-card{
+  display:grid;
+  grid-template-columns: 1.15fr 1fr;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+/* Lado esquerdo (hero roxo) */
+.auth-left{
+  position: relative;
+  min-height: 540px;
+  color:#fff;
+  padding: 42px 40px;
+  background:
+    radial-gradient(120% 140% at 10% 10%, #a78bfa 0%, transparent 40%),
+    linear-gradient(135deg, var(--auth-grad-start), var(--auth-grad-end));
+}
+
+/* Título + subtítulo */
+.auth-left h1{ margin:0 0 10px 0; font-size: 32px; letter-spacing:.2px }
+.auth-left p{ margin:0; opacity:.95; max-width: 420px }
+
+/* Pontilhado e “linhas topográficas” (decorativo) */
+.auth-left::before,
+.auth-left::after{
+  content:"";
+  position:absolute; pointer-events:none; opacity:.25;
+}
+.auth-left::before{
+  /* pontilhado vertical */
+  top: 60px; right: 36px; width: 6px; height: 140px;
+  background:
+    radial-gradient(circle, var(--auth-dot) 2px, transparent 2px) 0 0 / 6px 14px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+}
+.auth-left::after{
+  /* “ondas” */
+  left: 24px; bottom: 24px; width: 240px; height: 160px;
+  background:
+    radial-gradient(closest-side, transparent 28%, rgba(255,255,255,.18) 29% 31%, transparent 32%) 0 0/ 100% 52px,
+    radial-gradient(closest-side, transparent 12%, rgba(255,255,255,.18) 13% 15%, transparent 16%) 0 26px/ 100% 52px;
+  transform: rotate(10deg);
+}
+
+/* Lado direito (form escuro com inputs “pill”) */
+.auth-right{
+  background: #0f172a;
+  padding: 26px 28px 30px;
+  display:flex; align-items:center; justify-content:center;
+}
+.auth-panel{ width: 100%; max-width: 440px; }
+
+/* Títulos/legendas */
+.auth-title{ margin: 0 0 10px 0; font-size: 26px }
+.auth-subtitle{ margin: 0 0 16px 0; color: var(--text-dim) }
+
+/* Campos com ícone */
+.field{ position: relative }
+.icon{
+  position:absolute; left:12px; top:50%; transform: translateY(-50%);
+  width:18px; height:18px; opacity:.75;
+}
+
+/* Inputs pill */
+.input-pill, .select-pill{
+  width:100%;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: #0b1020; /* escuro mais claro que o panel */
+  color: var(--text);
+  padding: 12px 16px 12px 42px; /* espaço pro ícone */
+  outline: none;
+}
+.input-pill::placeholder{ color:#9fb0d4 }
+.select-pill{ padding-left:16px }
+
+/* Layout do form */
+.form{ display:grid; gap: 12px }
+.row-between{ display:flex; justify-content: space-between; align-items:center; gap: 12px }
+.check{ display:flex; align-items:center; gap:8px; color: var(--text-dim) }
+
+/* Botão pill com gradiente */
+.btn-pill{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:100%; padding: 12px 18px; border-radius:999px; cursor:pointer;
+  color:#fff; text-decoration:none; font-weight:600;
+  background: linear-gradient(90deg, var(--primary-2), var(--primary));
+  border: none; box-shadow: 0 12px 28px rgba(59,130,246,.35);
+}
+.btn-pill:hover{ filter: brightness(1.05) }
+
+/* Footnote/link */
+.small{ font-size: 13px }
+.link{ color:#c3b5ff; text-decoration:none }
+.link:hover{ text-decoration: underline }
+
+/* Responsivo */
+@media (max-width: 980px){
+  .auth-card{ grid-template-columns: 1fr }
+  .auth-left{ min-height: 300px }
+}

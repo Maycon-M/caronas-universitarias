@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CampusCruze • Entrar</title>
+  <link th:href="@{/css/main.css}" rel="stylesheet" />
+  <link th:href="@{/css/auth.css}" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <!-- NAV enxuta -->
+    <div class="nav">
+      <div class="brand"><div class="brand-badge"></div><span>CampusCruze</span></div>
+      <div>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/caronas}">Caronas</a>
+        <a th:href="@{/register}">Cadastrar</a>
+      </div>
+    </div>
+
+    <div class="auth-frame">
+      <div class="auth-card">
+        <!-- Esquerda -->
+        <aside class="auth-left">
+          <h1>Bem-vindo(a) de volta!</h1>
+          <p>Você pode entrar para reservar caronas e acompanhar suas viagens com segurança.</p>
+        </aside>
+
+        <!-- Direita -->
+        <div class="auth-right">
+          <div class="auth-panel">
+            <h2 class="auth-title">Sign In</h2>
+            <p class="auth-subtitle">Use seu e-mail e senha para continuar.</p>
+
+            <form class="form" th:action="@{/login}" method="post">
+              <div class="field">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+                <input class="input-pill" type="email" name="email" placeholder="email@exemplo.com" required />
+              </div>
+
+              <div class="field">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 8V6a3 3 0 016 0v3H9z"/></svg>
+                <input class="input-pill" type="password" name="password" placeholder="••••••••" required />
+              </div>
+
+              <div class="row-between">
+                <label class="check"><input type="checkbox" /> Lembrar-me</label>
+                <a class="link" href="#" aria-disabled="true">Esqueceu a senha?</a>
+              </div>
+
+              <button class="btn-pill" type="submit">Login</button>
+
+              <p class="small" style="margin-top:10px;color:var(--text-dim)">
+                Novo por aqui? <a class="link" th:href="@{/register}">Crie uma conta</a>
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
