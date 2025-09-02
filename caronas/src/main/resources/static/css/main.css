@@ -11,6 +11,8 @@
   --radius:16px;
   --radius-sm:12px;
   --shadow:0 8px 24px rgba(0,0,0,.35);
+  --danger: #ef4444;   /* vermelho */
+  --danger-2: #dc2626;
 }
 
 *{box-sizing:border-box}
@@ -109,4 +111,44 @@ body{
 @media (max-width: 900px){
   .search{grid-template-columns: 1fr 1fr 1fr}
   .grid{grid-template-columns: 1fr}
+}
+
+/* === Navbar CTAs (override forte) === */
+.nav-cta { display:inline-flex; gap:10px; margin-left:10px }
+
+/* Entrar (ghost) */
+.nav > div a.cta{
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:600;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:var(--text);
+}
+.nav > div a.cta:hover{
+  background:rgba(255,255,255,.10);
+  color:var(--text);
+}
+
+/* Cadastrar (destaque) */
+.nav > div a.cta-primary{
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:700;
+  color:#fff;
+  border-color:transparent;
+  background:linear-gradient(180deg, var(--primary-2), var(--primary));
+  box-shadow:0 10px 24px rgba(59,130,246,.35);
+}
+.nav > div a.cta-primary:hover{ filter:brightness(1.06) }
+
+/* Sair (vermelho) */
+.nav > div a.link-danger{
+  color:var(--danger);
+  border-radius:999px;
+}
+.nav > div a.link-danger:hover{
+  color:#fff;
+  background:rgba(239,68,68,.14);
+  border:1px solid rgba(239,68,68,.45);
 }

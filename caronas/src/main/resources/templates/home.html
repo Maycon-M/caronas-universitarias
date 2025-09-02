@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CampusCruze • Home</title>
-  <link th:href="@{/css/main.css}" rel="stylesheet" />
+  <link th:href="@{/css/main.css(v=${#dates.createNow().time})}" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
@@ -22,15 +22,15 @@
         <a th:href="@{/caronas}">Caronas</a>
 
         <!-- Quando NÃO logado -->
-        <span th:if="${session.authUserEmail == null}">
-          <a th:href="@{/login}">Entrar</a>
-          <a th:href="@{/register}">Cadastrar</a>
+        <span th:if="${session.authUserEmail == null}" class="nav-cta">
+          <a th:href="@{/login}" class="cta">Entrar</a>
+          <a th:href="@{/register}" class="cta cta-primary">Cadastrar</a>
         </span>
 
         <!-- Quando logado -->
-        <span th:if="${session.authUserEmail != null}">
+        <span th:if="${session.authUserEmail != null}" class="nav-cta">
           <a th:href="@{/perfil}">Perfil</a>
-          <a th:href="@{/logout}">Sair</a>
+          <a th:href="@{/logout}" class="link-danger">Sair</a>
         </span>
       </div>
     </div>

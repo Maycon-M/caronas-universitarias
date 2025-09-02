@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CampusCruze • Cadastrar</title>
   <link th:href="@{/css/main.css}" rel="stylesheet" />
-  <link th:href="@{/css/auth.css}" rel="stylesheet" />
+  <link th:href="@{/css/auth.css(v=${#dates.createNow().time})}" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
@@ -14,7 +14,7 @@
       <div>
         <a th:href="@{/home}">Home</a>
         <a th:href="@{/caronas}">Caronas</a>
-        <a th:href="@{/login}">Entrar</a>
+        <a th:href="@{/login}" class="cta">Entrar</a>
       </div>
     </div>
 
@@ -56,10 +56,12 @@
               </div>
 
               <div class="field">
-                <select class="select-pill" name="role" required>
-                  <option value="USER" selected>Passageiro</option>
-                  <option value="DRIVER">Motorista</option>
-                </select>
+                <div class="select-wrap">
+                  <select class="select-pill" name="role" required>
+                    <option value="USER" selected>Passageiro</option>
+                    <option value="DRIVER">Motorista</option>
+                  </select>
+                </div>
                 <small class="small" style="color:var(--text-dim); display:block; margin-top:6px">
                   A aprovação de motorista pode exigir verificação posterior.
                 </small>

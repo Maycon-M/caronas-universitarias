@@ -115,3 +115,43 @@
   .auth-card{ grid-template-columns: 1fr }
   .auth-left{ min-height: 300px }
 }
+
+/* Select pill com seta custom */
+.select-wrap{ position: relative; }
+
+.select-wrap .select-pill{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 48px;
+  transition: border-color .2s, background-color .2s, box-shadow .2s;
+}
+
+/* seta do Windows (IE/Edge legado) */
+.select-wrap .select-pill::-ms-expand{ display:none; }
+
+.select-wrap::after{
+  content:"";
+  position:absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  background: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239fb0d4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") no-repeat center/14px;
+  opacity: .9;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.2));
+}
+
+/* hover/focus iguais ao input */
+.select-wrap .select-pill:hover{
+  background: #0d1426;
+  border-color: #2d3a5a;
+}
+.select-wrap .select-pill:focus{
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.25);
+}
